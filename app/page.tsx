@@ -92,16 +92,16 @@ export default function Home() {
             <p className="text-amber-800 text-sm leading-relaxed">
               In <strong>production builds</strong> (next build + next start),{" "}
               <strong>NEXT_PUBLIC_*</strong> variables are <em>always</em>{" "}
-              inlined at build time by webpack, regardless of whether you're
-              using client components, server components, or force-dynamic. For
-              true runtime environment variables in production, use server-only
-              variables (without the NEXT_PUBLIC_ prefix) in dynamic server
-              components.
+              inlined at build time by webpack, regardless of whether
+              you&apos;re using client components, server components, or
+              force-dynamic. For true runtime environment variables in
+              production, use server-only variables (without the NEXT_PUBLIC_
+              prefix) in dynamic server components.
             </p>
             <p className="text-amber-800 text-sm leading-relaxed mt-3">
               <strong>Note:</strong> In development mode (next dev), all
               environment variables are read from process.env at runtime, so you
-              won't see this inlining behavior.
+              won&apos;t see this inlining behavior.
             </p>
           </div>
         </div>
