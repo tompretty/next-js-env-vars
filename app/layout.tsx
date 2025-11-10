@@ -26,19 +26,43 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
       >
-        <ul>
-          <li>
-            <Link href="/client">Client</Link>
-          </li>
-          <li>
-            <Link href="/server-dynamic">Server Dynamic</Link>
-          </li>
-          <li>
-            <Link href="/server-static">Server Static</Link>
-          </li>
-        </ul>
+        <nav className="bg-white border-b border-gray-200 shadow-sm">
+          <div className="max-w-6xl mx-auto px-6 py-4">
+            <div className="flex items-center gap-8">
+              <div className="text-sm font-semibold text-gray-900">
+                Next.js Env Vars Demo
+              </div>
+              <ul className="flex gap-2">
+                <li>
+                  <Link
+                    href="/client"
+                    className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                  >
+                    Client Component
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/server-dynamic"
+                    className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+                  >
+                    Server Dynamic
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/server-static"
+                    className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors"
+                  >
+                    Server Static
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
         {children}
       </body>
     </html>

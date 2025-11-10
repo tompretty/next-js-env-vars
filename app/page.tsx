@@ -1,63 +1,109 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="max-w-4xl mx-auto px-6 py-12">
+      <main>
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-indigo-500 p-8 mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-3">
+            Next.js Environment Variables Demo
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-gray-700 text-lg">
+            Understanding how different component types handle environment
+            variables
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200 space-y-8">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              How to Test This Demo
+            </h2>
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-3">
+              <p className="text-sm text-gray-700 leading-relaxed">
+                <strong>1. Build with BUILD_TIME values:</strong>
+              </p>
+              <code className="block bg-gray-900 text-green-400 px-4 py-3 rounded text-sm font-mono">
+                MY_SERVER_VAR=BUILD_TIME NEXT_PUBLIC_MY_CLIENT_VAR=BUILD_TIME
+                npm run build
+              </code>
+
+              <p className="text-sm text-gray-700 leading-relaxed pt-3">
+                <strong>2. Run with RUN_TIME values:</strong>
+              </p>
+              <code className="block bg-gray-900 text-green-400 px-4 py-3 rounded text-sm font-mono">
+                MY_SERVER_VAR=RUN_TIME NEXT_PUBLIC_MY_CLIENT_VAR=RUN_TIME npm
+                start
+              </code>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Pages to Explore
+            </h2>
+            <div className="grid gap-4">
+              <Link
+                href="/client"
+                className="block p-6 border-2 border-blue-200 hover:border-blue-500 rounded-lg transition-colors bg-blue-50"
+              >
+                <h3 className="text-xl font-semibold text-blue-900 mb-2">
+                  Client Component
+                </h3>
+                <p className="text-blue-700 text-sm">
+                  Demonstrates that NEXT_PUBLIC_* variables are always inlined
+                  at build time, even in client components.
+                </p>
+              </Link>
+
+              <Link
+                href="/server-dynamic"
+                className="block p-6 border-2 border-green-200 hover:border-green-500 rounded-lg transition-colors bg-green-50"
+              >
+                <h3 className="text-xl font-semibold text-green-900 mb-2">
+                  Server Dynamic Component
+                </h3>
+                <p className="text-green-700 text-sm">
+                  Shows that server-only variables (without NEXT_PUBLIC_) can
+                  read runtime values when force-dynamic is enabled.
+                  NEXT_PUBLIC_* still get inlined.
+                </p>
+              </Link>
+
+              <Link
+                href="/server-static"
+                className="block p-6 border-2 border-purple-200 hover:border-purple-500 rounded-lg transition-colors bg-purple-50"
+              >
+                <h3 className="text-xl font-semibold text-purple-900 mb-2">
+                  Server Static Component
+                </h3>
+                <p className="text-purple-700 text-sm">
+                  Demonstrates that statically rendered pages capture all
+                  environment variables at build time.
+                </p>
+              </Link>
+            </div>
+          </div>
+
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-6">
+            <h3 className="font-semibold text-amber-900 mb-2">
+              Key Takeaway (Production Builds)
+            </h3>
+            <p className="text-amber-800 text-sm leading-relaxed">
+              In <strong>production builds</strong> (next build + next start),{" "}
+              <strong>NEXT_PUBLIC_*</strong> variables are <em>always</em>{" "}
+              inlined at build time by webpack, regardless of whether you're
+              using client components, server components, or force-dynamic. For
+              true runtime environment variables in production, use server-only
+              variables (without the NEXT_PUBLIC_ prefix) in dynamic server
+              components.
+            </p>
+            <p className="text-amber-800 text-sm leading-relaxed mt-3">
+              <strong>Note:</strong> In development mode (next dev), all
+              environment variables are read from process.env at runtime, so you
+              won't see this inlining behavior.
+            </p>
+          </div>
         </div>
       </main>
     </div>

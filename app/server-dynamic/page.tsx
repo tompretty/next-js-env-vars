@@ -2,15 +2,55 @@ import { env } from "@/env";
 
 export default function Page() {
   return (
-    <div>
+    <div className="max-w-4xl mx-auto px-6 py-12">
       <main>
-        <h1>Dynamic server component</h1>
+        <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
+          <h1 className="text-3xl font-bold text-green-900 mb-2">
+            Server Dynamic Component
+          </h1>
+          <p className="text-green-700 text-sm">
+            Runs on server • Rendered on every request • force-dynamic enabled
+          </p>
+        </div>
 
-        {/* In prod this will evaluate to the RUNTIME value of the env var as this is a dynamic page and it's a non-public variable */}
-        <p>Server variable: {env.MY_SERVER_VAR}</p>
+        <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200 space-y-6">
+          <div>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+              MY_SERVER_VAR (Server-only)
+            </h3>
+            <div className="bg-green-50 border-2 border-green-500 rounded-lg p-6">
+              <div className="text-sm text-green-700 mb-2 font-medium">
+                ✅ Production build: Runtime value (reads from process.env)
+              </div>
+              <div className="text-3xl font-mono font-bold text-green-900">
+                {env.MY_SERVER_VAR}
+              </div>
+            </div>
+          </div>
 
-        {/* In prod this will evaluate to the BUILDTIME value of the env var as NEXT_PUBLIC_ variables are always buildtime */}
-        <p>Public variable: {env.NEXT_PUBLIC_MY_CLIENT_VAR}</p>
+          <div>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+              NEXT_PUBLIC_MY_CLIENT_VAR
+            </h3>
+            <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-6">
+              <div className="text-sm text-yellow-700 mb-2 font-medium">
+                ⚠️ Production build: Build-time value (inlined at build)
+              </div>
+              <div className="text-3xl font-mono font-bold text-yellow-900">
+                {env.NEXT_PUBLIC_MY_CLIENT_VAR}
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <p className="text-sm text-gray-600 leading-relaxed">
+              <strong>Production behavior:</strong> MY_SERVER_VAR reads from
+              runtime environment because this page has force-dynamic enabled.
+              NEXT_PUBLIC_MY_CLIENT_VAR is inlined at build time. In dev mode
+              (next dev), both read from runtime.
+            </p>
+          </div>
+        </div>
       </main>
     </div>
   );
